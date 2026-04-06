@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="nl-NL">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lighthouse Recording Studio – Opnamestudio Maurik</title>
+  <link rel="icon" href="./assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="./assets/logo.png">
+  <meta name="description" content="Lighthouse Recording Studio in Maurik – professionele opnamestudio met uitstekende akoestiek en warme sfeer. Diensten: opnametarieven, mix & mastering." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400;1,700&family=Young+Serif&display=swap" />
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --text: #0A0A0A;
+      --text-muted: #666;
+      --accent: #B8974E;
+      --accent-dark: #9a7d3a;
+      --border: #e8e8e8;
+      --section-pad: 8rem 0;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+      --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Bitter', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1, h2, h3, h4 {
+      font-family: 'Young Serif', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 2rem; }
+    h3 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    p { margin-bottom: 1.2rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      transition: height 0.3s;
+    }
+    nav.scrolled .nav-inner {
+      height: 70px;
+    }
+    .nav-logo {
+      font-family: 'Young Serif', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .nav-logo img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.2rem;
+    }
+    .nav-links a {
+      font-family: 'Bitter', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* Hamburger */
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-burger span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 68px 0 0 0;
+      background: #fff;
+      z-index: 999;
+      padding: 2rem;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: 'Young Serif', serif;
+      font-size: 1.6rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-mobile a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 6rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('./assets/extracted_image_3.webp');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.4) 40%,
+        transparent 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      max-width: 840px;
+      margin-left: 0; /* Align strictly to container start */
+    }
+    .hero-content .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.25rem;
+      text-transform: uppercase;
+      color: #9a8b54 !important;
+      margin-bottom: 1.5rem;
+      font-family: 'Bitter', serif;
+      font-weight: 700;
+    }
+    .hero h1 {
+      margin-bottom: 1.2rem;
+      line-height: 1.05;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      max-width: 620px;
+      opacity: 0.95;
+      margin-bottom: 2.5rem;
+      color: rgba(255,255,255,0.9);
+    }
+    .hero-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .hero-container { padding: 0 1.5rem; }
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.4);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      50.001% { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Bitter', serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(184,151,78,0.2);
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(184,151,78,0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+    }
+    .btn-outline:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+    .btn-outline-dark {
+      background: transparent;
+      border: 1px solid var(--text);
+      color: var(--text);
+    }
+    .btn-outline-dark:hover {
+      background: var(--text);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* ── OVER MIJ ── */
+    .over-mij {
+      padding: var(--section-pad);
+    }
+    .over-mij-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .over-mij-image {
+      position: relative;
+    }
+    .over-mij-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .over-mij-image::before {
+      content: '';
+      position: absolute;
+      top: -16px; left: -16px;
+      right: 16px; bottom: 16px;
+      border: 1px solid var(--border);
+      z-index: -1;
+    }
+    .over-mij-text .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      font-family: 'Bitter', serif;
+    }
+    .over-mij-text p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .over-mij-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .over-mij-image::before { display: none; }
+    }
+
+    /* ── OVER DE STUDIO ── */
+    .over-studio {
+      padding: var(--section-pad);
+      background: #f8f7f5;
+    }
+    .studio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .studio-image img {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      display: block;
+    }
+    .studio-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .studio-feature {
+      padding: 1.5rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(255,255,255,0.4);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      transition: var(--transition);
+    }
+    .studio-feature:hover {
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transform: translateX(5px);
+    }
+    .studio-feature h4 {
+      font-family: 'Young Serif', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+    .studio-feature p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .studio-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .studio-features { grid-template-columns: 1fr; }
+    }
+
+    /* ── DIENSTEN ── */
+    .diensten {
+      padding: var(--section-pad);
+    }
+    .diensten-intro {
+      max-width: 680px;
+      margin-bottom: 3.5rem;
+    }
+    .diensten-intro p { color: var(--text-muted); }
+    .diensten-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding-top: 1rem;
+    }
+    .dienst-card {
+      background: #fff;
+      padding: 3rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .dienst-card:hover {
+      background: #fff;
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(184,151,78,0.2);
+    }
+    .dienst-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.4s ease;
+    }
+    .dienst-card:hover::after { height: 100%; }
+    .dienst-price-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .dienst-price-old {
+      font-family: 'Bitter', serif;
+      font-size: 1rem;
+      color: #bbb;
+      text-decoration: line-through;
+    }
+    .dienst-badge {
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bitter', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+    .dienst-price {
+      font-family: 'Young Serif', serif;
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+    .dienst-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-family: 'Bitter', serif;
+    }
+    .dienst-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 600px) {
+      .diensten-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── GEAR ── */
+    .gear {
+      padding: var(--section-pad);
+      background: #f8f7f5;
+    }
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .gear-category h3 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: 'Bitter', serif;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .gear-category ul {
+      list-style: none;
+    }
+    .gear-category li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #f0efe9;
+    }
+    .gear-category li:last-child { border: none; }
+
+    @media (max-width: 900px) {
+      .gear-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .gear-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: var(--section-pad);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-info h2 { margin-bottom: 1rem; }
+    .contact-info p { color: var(--text-muted); margin-bottom: 2rem; }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+    .contact-detail-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-detail-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-family: 'Bitter', serif;
+    }
+    .contact-detail-value {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .contact-detail-value a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .contact-detail-value a:hover { color: var(--accent); }
+
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: 'Bitter', serif;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      background: #fbfbfb;
+      font-family: 'Bitter', serif;
+      font-size: 0.98rem;
+      color: var(--text);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(184,151,78,0.1);
+    }
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    .form-submit {
+      align-self: flex-start;
+    }
+    .form-message {
+      padding: 1rem;
+      background: #f0f7f0;
+      border-left: 3px solid #4CAF50;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .form-message.show { display: block; }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 0;
+      background: var(--text);
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Young Serif', serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .footer-logo img {
+      height: 30px;
+      width: auto;
+      filter: brightness(0) invert(1); /* Witte logo in de zwarte footer */
+      opacity: 0.7;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.8rem;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy {
+      font-size: 0.78rem;
+      width: 100%;
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ── SECTION SEPARATOR IMAGE ── */
+    .img-break {
+      height: 420px;
+      overflow: hidden;
+    }
+    .img-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── AUDIO SHOWCASE ── */
+    .audio-showcase {
+      padding: var(--section-pad);
+      background: #0c0c0c;
+      color: #fff;
+    }
+    .audio-showcase .section-divider {
+      background: var(--accent);
+    }
+    .audio-showcase h2 {
+      color: #fff;
+    }
+    .audio-showcase .eyebrow {
+      color: var(--accent) !important;
+    }
+    .audio-intro {
+      max-width: 620px;
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-top: 0.5rem;
+    }
+    .audio-header {
+      margin-bottom: 3.5rem;
+    }
+    .audio-player-wrap {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* Track list */
+    .track-list {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .track-item {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 1.2rem 1.8rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.2s;
+      position: relative;
+    }
+    .track-item:last-child { border-bottom: none; }
+    .track-item:hover { background: rgba(255,255,255,0.04); }
+    .track-item.active { background: rgba(184,151,78,0.08); }
+    .track-item.active .track-num { color: var(--accent); }
+    .track-item.playing .track-num {
+      position: relative;
+    }
+    .track-num {
+      font-family: 'Bitter', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.3);
+      width: 22px;
+      flex-shrink: 0;
+    }
+    .track-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .track-title {
+      font-family: 'Young Serif', serif;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .track-meta {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Bitter', serif;
+    }
+    .track-duration {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      font-family: 'Bitter', serif;
+      letter-spacing: 0.05em;
+    }
+    /* Playing bars animation */
+    .track-item.playing .track-num::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 2px;
+    }
+    .sound-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+      width: 22px;
+    }
+    .sound-bar {
+      width: 3px;
+      background: var(--accent);
+      border-radius: 1px;
+      animation: soundBar 0.8s ease-in-out infinite alternate;
+    }
+    .sound-bar:nth-child(1) { height: 40%; animation-delay: 0s; }
+    .sound-bar:nth-child(2) { height: 100%; animation-delay: 0.2s; }
+    .sound-bar:nth-child(3) { height: 60%; animation-delay: 0.1s; }
+    .sound-bar:nth-child(4) { height: 80%; animation-delay: 0.3s; }
+    @keyframes soundBar {
+      from { transform: scaleY(0.3); }
+      to   { transform: scaleY(1); }
+    }
+
+    /* Now playing bar */
+    .now-playing {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.4rem 2.2rem;
+      background: rgba(22, 22, 22, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .np-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-shrink: 0;
+    }
+    .np-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .np-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .np-play {
+      width: 44px; height: 44px;
+      background: var(--accent) !important;
+      color: #fff !important;
+    }
+    .np-play:hover { background: var(--accent-dark) !important; }
+
+    .np-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+    .np-title {
+      font-family: 'Young Serif', serif;
+      font-size: 0.92rem;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .np-progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .np-time {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Bitter', serif;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+    .np-progress {
+      flex: 1;
+      height: 3px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 99px;
+      position: relative;
+      cursor: pointer;
+    }
+    .np-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 99px;
+      width: 0%;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+    .np-thumb {
+      position: absolute;
+      top: 50%; right: calc(100% - 0%);
+      transform: translate(50%, -50%);
+      width: 10px; height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s, right 0.1s linear;
+      pointer-events: none;
+    }
+    .np-progress:hover .np-thumb { opacity: 1; }
+
+    .np-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: rgba(255,255,255,0.4);
+      flex-shrink: 0;
+    }
+    .np-volume {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 80px;
+      height: 3px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 99px;
+      outline: none;
+      cursor: pointer;
+    }
+    .np-volume::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 10px; height: 10px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+    }
+
+    @media (max-width: 600px) {
+      .np-right { display: none; }
+      .track-item { padding: 1rem 1.2rem; gap: 1rem; }
+      .now-playing { padding: 1.2rem; gap: 1rem; }
+    }
+
+    .dienst-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin-top: 0.5rem;
+    }
+    .dienst-list li {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .dienst-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 0.1rem;
+    }
+    .dienst-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* ── REVIEWS TICKER ── */
+    .reviews {
+      padding: 6rem 0 0;
+      overflow: hidden;
+    }
+    .reviews-header {
+      margin-bottom: 3.5rem;
+    }
+    .ticker-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding: 0.5rem 0 4rem;
+    }
+    /* fade edges */
+    .ticker-wrap::before,
+    .ticker-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 160px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .ticker-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, #fff, transparent);
+    }
+    .ticker-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, #fff, transparent);
+    }
+    .ticker-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      animation: ticker 38s linear infinite;
+    }
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .review-card {
+      flex-shrink: 0;
+      width: 340px;
+      background: #f8f7f5;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2rem 2rem 1.8rem;
+      position: relative;
+      transition: box-shadow 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .review-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+    .review-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      font-family: 'Young Serif', serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.18;
+    }
+    .review-stars {
+      color: var(--accent);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.9rem;
+    }
+    .review-text {
+      font-family: 'Bitter', serif;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-style: italic;
+      margin-bottom: 1.4rem;
+    }
+    .review-author {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: auto;
+    }
+    .review-name {
+      font-family: 'Young Serif', serif;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .review-band {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Bitter', serif;
+    }
+
+    /* ── INSTAGRAM FEED ── */
+    .instagram-section {
+      padding: 8rem 0 0 0;
+      background: #fafafa;
+      border-top: 1px solid var(--border);
+    }
+    .instagram-header {
+      max-width: 1240px;
+      margin: 0 auto 4rem;
+      padding: 0 2.5rem;
+      text-align: center;
+    }
+    .instagram-eyebrow {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #9a8b54;
+      margin-bottom: 1rem;
+      font-family: 'Bitter', serif;
+      font-weight: 700;
+    }
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      width: 100%;
+    }
+    .insta-item {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #000;
+      cursor: pointer;
+    }
+    .insta-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block; /* Removes tiny bottom gap */
+      filter: grayscale(1);
+      opacity: 0.75;
+      transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .insta-item:hover img {
+      filter: grayscale(0);
+      opacity: 1;
+      transform: scale(1.08);
+    }
+    .insta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(154, 139, 84, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .insta-item:hover .insta-overlay {
+      opacity: 1;
+    }
+    @media (max-width: 768px) {
+      .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+      .instagram-section { padding: 6rem 0; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <img src="./assets/logo.png" alt="Lighthouse Logo">
+        Lighthouse Recording Studio
+      </a>
+      <ul class="nav-links">
+        <li><a href="#studio">Over de studio</a></li>
+        <li><a href="#over-mij">Over mij</a></li>
+        <li><a href="#diensten">Diensten & tarieven</a></li>
+        <li><a href="#gear">Gear</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-burger" id="burger" aria-label="Menu openen/sluiten">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#studio" onclick="closeMobile()">Over de studio</a>
+    <a href="#over-mij" onclick="closeMobile()">Over mij</a>
+    <a href="#diensten" onclick="closeMobile()">Diensten & tarieven</a>
+    <a href="#gear" onclick="closeMobile()">Gear</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Opnamestudio · Maurik</p>
+        <h1>Gebouwd<br>voor geluid.</h1>
+        <p>Lighthouse Recording Studio is een plek waar goede akoestiek, een warme sfeer en doordacht ontwerp samenkomen. Elke plank en elk paneel is met de hand gemaakt en afgestemd om de ruimte optimaal te laten klinken.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="#studio" class="btn btn-primary">Over de studio</a>
+          <a href="#contact" class="btn btn-outline">Boek een sessie</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- OVER MIJ -->
+  <section class="over-mij" id="over-mij">
+    <div class="container">
+      <div class="over-mij-grid">
+        <div class="over-mij-image fade-in">
+          <img src="./assets/extracted_image_1.webp" alt="Quirijn Groot Koerkamp in de studio" />
+        </div>
+        <div class="over-mij-text fade-in fade-in-delay-2">
+          <p class="eyebrow">Over mij</p>
+          <div class="section-divider"></div>
+          <h2>Passie voor klank en ambacht.</h2>
+          <p>Mijn naam is <strong>Quirijn</strong>. Ik heb <span style="color:#f5b636;">Lighthouse Recording Studio</span> in twee jaar gebouwd. Ik begon ooit met het spelen op een keyboard en was daarna toetsenist in verschillende bandjes. Ik had hiervoor een studio in Utrecht, en met deze nieuwe studio is mijn droom eindelijk werkelijkheid geworden.</p>
+          <p>Dit project is ontstaan uit een passie voor muziek, ontwerp en bouwen. Van een kleine muziekruimte in Opijnen, via een antikraakbungalow in Utrecht, naar deze volledig zelfgebouwde studio.</p>
+          <p>Als 28-jarige meubelmaker, muziekproducent en muzikant sta ik dichtbij de bands die hier opnemen: ik begrijp hoe het is om zelf muziek te maken en weet precies wat een band nodig heeft tijdens een opnamesessie.</p>
+          <a href="#contact" class="btn btn-outline-dark" style="margin-top:0.5rem;">Neem contact op</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE BREAK -->
+  <div class="img-break">
+    <img src="./assets/extracted_image_2.webp" alt="Lighthouse Recording Studio interieur" />
+  </div>
+
+  <!-- OVER DE STUDIO -->
+  <section class="over-studio" id="studio">
+    <div class="container">
+      <div class="studio-grid">
+        <div class="fade-in">
+          <p class="eyebrow" style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;font-family:Bitter,serif;">Over de studio</p>
+          <div class="section-divider"></div>
+          <h2>Waar geluid centraal staat.</h2>
+          <p style="color:var(--text-muted);">Lighthouse Recording Studio is een opnamestudio in Maurik waar goede akoestiek, een warme sfeer en doordacht ontwerp samenkomen. De studio is niet zomaar gebouwd: elke plank, elk paneel en elke akoestische behandeling is met de hand gemaakt en afgestemd om de ruimte optimaal te laten klinken.</p>
+          <p style="color:var(--text-muted);">Achter het warme interieur schuilt een doordacht geluidsplan, waardoor het een inspirerende omgeving is voor bands om in te spelen.</p>
+          <div class="studio-features fade-in fade-in-delay-2">
+            <div class="studio-feature">
+              <h4>De ruimte</h4>
+              <p>40m² live room, ruim voor een complete band, met een korte nagalm en mooi direct geluid.</p>
+            </div>
+            <div class="studio-feature">
+              <h4>Control room</h4>
+              <p>PMC IB1S monitors met Bryston versterkers voor een gedetailleerd geluidsbeeld.</p>
+            </div>
+            <div class="studio-feature">
+              <h4>Locatie</h4>
+              <p>Midden in de Betuwe, Maurik – ver weg van de drukte, volledig gericht op de muziek.</p>
+            </div>
+            <div class="studio-feature">
+              <h4>Faciliteiten</h4>
+              <p>Complete woonkamer met keuken boven de studio. Airco & WTW voor een fijn binnenklimaat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="studio-image fade-in fade-in-delay-1">
+          <img src="./assets/image_2.jpg" alt="Studio control room" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIENSTEN -->
+  <section class="diensten" id="diensten">
+    <div class="container">
+      <div class="diensten-intro fade-in">
+        <p class="eyebrow" style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;font-family:Bitter,serif;">Diensten & tarieven</p>
+        <div class="section-divider"></div>
+        <h2>Wat kun je verwachten?</h2>
+        <p>Deze ruimte is ideaal voor bands die met echte instrumenten werken – van indie en soul tot new wave en blues. Kies uit onze pakketten voor elk type project. <strong>Lente actie: 20% korting op alle pakketten!</strong> De genoemde kortingsprijzen zijn indicaties; elk project is anders en ik stem de kosten graag af op jouw wensen. Alle prijzen zijn exclusief BTW.</p>
+      </div>
+      <div class="diensten-grid fade-in fade-in-delay-1">
+
+        <div class="dienst-card">
+          <div class="dienst-price-wrap">
+            <div class="dienst-price">€250</div>
+            <div class="dienst-badge">-20%</div>
+          </div>
+          <h3>Demo Pakket</h3>
+          <p class="dienst-subtitle">Lente actie</p>
+          <ul class="dienst-list">
+            <li>In korte tijd je muziek vastleggen</li>
+            <li>2 uur opnemen</li>
+            <li>Inclusief snelle mix</li>
+          </ul>
+        </div>
+
+        <div class="dienst-card">
+          <div class="dienst-price-wrap">
+            <div class="dienst-price">€440</div>
+            <div class="dienst-price-old">€550</div>
+            <div class="dienst-badge">-20%</div>
+          </div>
+          <h3>Single Pakket</h3>
+          <p class="dienst-subtitle">Lente actie</p>
+          <ul class="dienst-list">
+            <li>Een dag opnemen (8 uur)</li>
+            <li>Genoeg tijd om alles te perfectioneren</li>
+            <li>Inclusief mix</li>
+          </ul>
+        </div>
+
+        <div class="dienst-card">
+          <div class="dienst-price-wrap">
+            <div class="dienst-price">€1600</div>
+            <div class="dienst-price-old">€2000</div>
+            <div class="dienst-badge">-20%</div>
+          </div>
+          <h3>EP Pakket</h3>
+          <p class="dienst-subtitle">Lente actie</p>
+          <ul class="dienst-list">
+            <li>4 à 5 songs</li>
+            <li>3 dagen opnemen van 8 uur</li>
+            <li>Inclusief mixen alle songs (8 uur)</li>
+          </ul>
+        </div>
+
+        <div class="dienst-card">
+          <div class="dienst-price-wrap">
+            <div class="dienst-price">Op aanvraag</div>
+          </div>
+          <h3>Per uur</h3>
+          <p class="dienst-subtitle">Maatwerk</p>
+          <p class="dienst-desc">Heb je minder tijd nodig dan een halve dag, bijvoorbeeld voor vocal-opnames of opnames van een specifiek instrument? Dan kun je de studio ook per uur boeken. Neem contact op voor een offerte op maat.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIO SHOWCASE -->
+  <section class="audio-showcase" id="luister">
+    <div class="container">
+      <div class="audio-header fade-in">
+        <p class="eyebrow" style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;font-family:Bitter,serif;">Luister mee</p>
+        <div class="section-divider"></div>
+        <h2>Hoor het resultaat.</h2>
+        <p class="audio-intro">De beste manier om een studio te beoordelen is met je oren. Onderstaande opnames zijn volledig in Lighthouse Recording Studio opgenomen en gemixt — van eerste noot tot eindmix. Zo hoor je precies wat er mogelijk is.</p>
+      </div>
+
+      <div class="audio-player-wrap fade-in fade-in-delay-1">
+
+        <!-- Track list -->
+        <div class="track-list">
+          <div class="track-item active" data-index="0">
+            <div class="track-num">01</div>
+            <div class="track-info">
+              <span class="track-title">Nummer Één</span>
+              <span class="track-meta">Bandje · 2024</span>
+            </div>
+            <div class="track-duration">3:42</div>
+          </div>
+          <div class="track-item" data-index="1">
+            <div class="track-num">02</div>
+            <div class="track-info">
+              <span class="track-title">Nummer Twee</span>
+              <span class="track-meta">Andere Band · 2024</span>
+            </div>
+            <div class="track-duration">4:15</div>
+          </div>
+          <div class="track-item" data-index="2">
+            <div class="track-num">03</div>
+            <div class="track-info">
+              <span class="track-title">Nummer Drie</span>
+              <span class="track-meta">Nog Een Band · 2024</span>
+            </div>
+            <div class="track-duration">3:58</div>
+          </div>
+        </div>
+
+        <!-- Now playing bar -->
+        <div class="now-playing">
+          <div class="np-left">
+            <button class="np-btn" id="btn-prev" aria-label="Vorige">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
+            </button>
+            <button class="np-btn np-play" id="btn-play" aria-label="Afspelen">
+              <svg class="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg class="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+            <button class="np-btn" id="btn-next" aria-label="Volgende">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
+            </button>
+          </div>
+
+          <div class="np-center">
+            <span class="np-title" id="np-title">Nummer Één</span>
+            <div class="np-progress-wrap">
+              <span class="np-time" id="np-current">0:00</span>
+              <div class="np-progress" id="np-progress">
+                <div class="np-bar" id="np-bar"></div>
+                <div class="np-thumb" id="np-thumb"></div>
+              </div>
+              <span class="np-time" id="np-duration">3:42</span>
+            </div>
+          </div>
+
+          <div class="np-right">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <input type="range" class="np-volume" id="np-volume" min="0" max="1" step="0.02" value="0.8" aria-label="Volume" />
+          </div>
+        </div>
+
+        <!-- Hidden audio element -->
+        <audio id="audio-player" preload="none">
+          <source src="track1.mp3" type="audio/mpeg" />
+        </audio>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GEAR -->
+  <section class="gear" id="gear">
+    <div class="container">
+      <div class="fade-in">
+        <p class="eyebrow" style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;font-family:Bitter,serif;">Apparatuur</p>
+        <div class="section-divider"></div>
+        <h2>Gear</h2>
+        <p style="color:var(--text-muted);max-width:580px;margin-bottom:3rem;">Een selectie van de apparatuur beschikbaar in de studio. Neem contact op voor meer informatie of een volledige lijst.</p>
+      </div>
+      <div class="gear-grid">
+        <div class="gear-category fade-in">
+          <h3>Microphones</h3>
+          <ul>
+            <li>Neumann U87</li>
+            <li>AKG C414</li>
+            <li>Shure SM7B</li>
+            <li>Sennheiser MD421</li>
+            <li>Shure SM57</li>
+            <li>Josephson C42</li>
+          </ul>
+        </div>
+        <div class="gear-category fade-in fade-in-delay-1">
+          <h3>Mic Pre Amps</h3>
+          <ul>
+            <li>Neve 1073</li>
+            <li>API 512c</li>
+            <li>Universal Audio 610</li>
+            <li>Focusrite ISA One</li>
+          </ul>
+        </div>
+        <div class="gear-category fade-in fade-in-delay-2">
+          <h3>Outboard</h3>
+          <ul>
+            <li>SSL Bus Compressor</li>
+            <li>Urei 1176</li>
+            <li>Teletronix LA-2A</li>
+            <li>Empirical Labs Distressor</li>
+          </ul>
+        </div>
+        <div class="gear-category fade-in fade-in-delay-1">
+          <h3>Monitoring</h3>
+          <ul>
+            <li>PMC IB1S (Bryston)</li>
+            <li>Yamaha NS10</li>
+            <li>Avantone MixCube</li>
+          </ul>
+        </div>
+        <div class="gear-category fade-in fade-in-delay-2">
+          <h3>Converters</h3>
+          <ul>
+            <li>Avid HD I/O</li>
+            <li>Prism Sound</li>
+          </ul>
+        </div>
+        <div class="gear-category fade-in fade-in-delay-3">
+          <h3>Instruments & Amps</h3>
+          <ul>
+            <li>Hammond B3 & Leslie</li>
+            <li>Fender Rhodes</li>
+            <li>Fender Deluxe Reverb</li>
+            <li>Marshall JCM800</li>
+            <li>Various acoustic percussion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews">
+    <div class="reviews-header container fade-in">
+      <p class="eyebrow" style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;font-family:Bitter,serif;">Ervaringen</p>
+      <div class="section-divider"></div>
+      <h2>Wat bands zeggen.</h2>
+    </div>
+
+    <div class="ticker-wrap">
+      <div class="ticker-track" id="ticker-track">
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Ongelofelijk goede akoestiek. We hebben onze EP hier opgenomen en het klinkt beter dan alles wat we eerder hebben gemaakt."</p>
+          <div class="review-author">
+            <span class="review-name">Thomas V.</span>
+            <span class="review-band">— De Avondrood</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Quirijn weet precies wat een band nodig heeft. Professionele setup, warme sfeer, en het resultaat was meteen goed."</p>
+          <div class="review-author">
+            <span class="review-name">Sara M.</span>
+            <span class="review-band">— Velvet Tide</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"De live room klinkt fantastisch voor drums. We zijn twee dagen gebleven en willen zeker terugkomen voor ons volgende album."</p>
+          <div class="review-author">
+            <span class="review-name">Joris K.</span>
+            <span class="review-band">— Stonefeld</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Prachtige studio, midden in de Betuwe. Helemaal weg van de stad, perfect om je te focussen op de muziek. Aanrader!"</p>
+          <div class="review-author">
+            <span class="review-name">Lena B.</span>
+            <span class="review-band">— Morningbird</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"De mix die Quirijn heeft gedaan klinkt geweldig. Analoge warmte gecombineerd met moderne precisie — precies wat we zochten."</p>
+          <div class="review-author">
+            <span class="review-name">Daan R.</span>
+            <span class="review-band">— Fog & Rain</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Alles is tot in de puntjes verzorgd — van de gear tot de koffie. We voelden ons meteen thuis en de opnames zijn geweldig geworden."</p>
+          <div class="review-author">
+            <span class="review-name">Nina W.</span>
+            <span class="review-band">— The Hollow</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="fade-in">
+          <p class="eyebrow" style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;font-family:Bitter,serif;">Contact</p>
+          <div class="section-divider"></div>
+          <h2>Laten we in contact komen.</h2>
+          <p>Heb je vragen of wil je een opnamedag plannen? Neem dan contact op via het formulier of stuur een e-mail.</p>
+          <div class="contact-detail">
+            <div class="contact-detail-item">
+              <span class="contact-detail-label">Adres</span>
+              <span class="contact-detail-value">Doejenburg 144 H, Maurik</span>
+            </div>
+            <div class="contact-detail-item">
+              <span class="contact-detail-label">E-mail</span>
+              <span class="contact-detail-value"><a href="mailto:info@lighthouserecordingstudio.nl">info@lighthouserecordingstudio.nl</a></span>
+            </div>
+            <div class="contact-detail-item">
+              <span class="contact-detail-label">Instagram</span>
+              <span class="contact-detail-value"><a href="https://www.instagram.com/lighthouserecordingstudio" target="_blank">@lighthouserecordingstudio</a></span>
+            </div>
+          </div>
+        </div>
+        <div class="fade-in fade-in-delay-1">
+          <form class="contact-form" id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="naam">Naam</label>
+                <input type="text" id="naam" name="naam" placeholder="Je naam" required />
+              </div>
+              <div class="form-group">
+                <label for="email">E-mailadres</label>
+                <input type="email" id="email" name="email" placeholder="je@email.nl" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="onderwerp">Onderwerp</label>
+              <input type="text" id="onderwerp" name="onderwerp" placeholder="Bijv. Opnamedag boeken" />
+            </div>
+            <div class="form-group">
+              <label for="bericht">Bericht</label>
+              <textarea id="bericht" name="bericht" placeholder="Vertel me over je project..." required></textarea>
+            </div>
+            <div class="form-message" id="form-message">
+              Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op.
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Verstuur bericht</button>
+            <div style="margin-top:2.5rem;text-align:center;">
+              <img src="./assets/logo.png" alt="Lighthouse Studio Logo" style="width:140px;height:auto;opacity:0.9;display:block;margin:0 auto;" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM FEED -->
+  <section class="instagram-section" id="social">
+    <div class="instagram-header">
+      <span class="instagram-eyebrow">Visual Stories</span>
+      <h2>Instagram Feed</h2>
+      <p style="color: var(--text-muted); font-family: 'Bitter', serif;">Volg <a href="https://www.instagram.com/lighthouse_recording_studio/" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 700;">@lighthouse_recording_studio</a> voor een kijkje achter de schermen.</p>
+    </div>
+    <div class="instagram-grid">
+      <div class="insta-item">
+        <img src="./assets/insta_1.jpg" alt="Studio Session">
+        <div class="insta-overlay"></div>
+      </div>
+      <div class="insta-item">
+        <img src="./assets/insta_2.jpg" alt="Gear Shot">
+        <div class="insta-overlay"></div>
+      </div>
+      <div class="insta-item">
+        <img src="./assets/insta_3.jpg" alt="Grand Piano">
+        <div class="insta-overlay"></div>
+      </div>
+      <div class="insta-item">
+        <img src="./assets/insta_4.jpg" alt="The Pelumas Session">
+        <div class="insta-overlay"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#home" class="footer-logo">
+          <img src="./assets/logo.png" alt="Lighthouse Studio Logo">
+          Lighthouse Recording Studio
+        </a>
+        <div class="footer-links">
+          <a href="#studio">Studio</a>
+          <a href="#diensten">Diensten</a>
+          <a href="#gear">Gear</a>
+          <a href="#contact">Contact</a>
+          <a href="https://www.instagram.com/lighthouse_recording_studio/" target="_blank">Instagram</a>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 Lighthouse Recording Studio · Maurik · Alle rechten voorbehouden</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── AUDIO PLAYER ──
+    const tracks = [
+      { title: 'Nummer Één',  meta: 'Bandje · 2024',        src: 'track1.mp3', duration: '3:42' },
+      { title: 'Nummer Twee', meta: 'Andere Band · 2024',   src: 'track2.mp3', duration: '4:15' },
+      { title: 'Nummer Drie', meta: 'Nog Een Band · 2024',  src: 'track3.mp3', duration: '3:58' },
+    ];
+    let currentTrack = 0;
+    let isPlaying = false;
+
+    const audio       = document.getElementById('audio-player');
+    const btnPlay     = document.getElementById('btn-play');
+    const btnPrev     = document.getElementById('btn-prev');
+    const btnNext     = document.getElementById('btn-next');
+    const npTitle     = document.getElementById('np-title');
+    const npBar       = document.getElementById('np-bar');
+    const npThumb     = document.getElementById('np-thumb');
+    const npProgress  = document.getElementById('np-progress');
+    const npCurrent   = document.getElementById('np-current');
+    const npDuration  = document.getElementById('np-duration');
+    const npVolume    = document.getElementById('np-volume');
+    const trackItems  = document.querySelectorAll('.track-item');
+    const iconPlay    = btnPlay.querySelector('.icon-play');
+    const iconPause   = btnPlay.querySelector('.icon-pause');
+
+    function formatTime(s) {
+      if (isNaN(s)) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    function loadTrack(index, autoplay) {
+      currentTrack = index;
+      const t = tracks[index];
+      audio.src = t.src;
+      npTitle.textContent = t.title;
+      npDuration.textContent = t.duration;
+      npBar.style.width = '0%';
+      npThumb.style.right = 'calc(100% - 0%)';
+      npCurrent.textContent = '0:00';
+
+      trackItems.forEach((el, i) => {
+        el.classList.remove('active', 'playing');
+        // restore number
+        const numEl = el.querySelector('.track-num');
+        numEl.innerHTML = String(i + 1).padStart(2, '0');
+      });
+      trackItems[index].classList.add('active');
+
+      if (autoplay) { audio.play(); setPlaying(true); }
+      else setPlaying(false);
+    }
+
+    function setPlaying(state) {
+      isPlaying = state;
+      iconPlay.style.display  = state ? 'none' : 'block';
+      iconPause.style.display = state ? 'block' : 'none';
+      trackItems[currentTrack].classList.toggle('playing', state);
+
+      // sound bars
+      const numEl = trackItems[currentTrack].querySelector('.track-num');
+      if (state) {
+        numEl.innerHTML = '<div class="sound-bars"><div class="sound-bar"></div><div class="sound-bar"></div><div class="sound-bar"></div><div class="sound-bar"></div></div>';
+      } else {
+        numEl.textContent = String(currentTrack + 1).padStart(2, '0');
+      }
+    }
+
+    btnPlay.addEventListener('click', () => {
+      if (isPlaying) { audio.pause(); setPlaying(false); }
+      else { audio.play(); setPlaying(true); }
+    });
+
+    btnNext.addEventListener('click', () => loadTrack((currentTrack + 1) % tracks.length, isPlaying));
+    btnPrev.addEventListener('click', () => loadTrack((currentTrack - 1 + tracks.length) % tracks.length, isPlaying));
+
+    trackItems.forEach((el, i) => {
+      el.addEventListener('click', () => {
+        if (i === currentTrack) {
+          if (isPlaying) { audio.pause(); setPlaying(false); }
+          else { audio.play(); setPlaying(true); }
+        } else {
+          loadTrack(i, true);
+        }
+      });
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      npBar.style.width = pct + '%';
+      npThumb.style.right = 'calc(' + (100 - pct) + '% - 5px)';
+      npCurrent.textContent = formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener('ended', () => {
+      loadTrack((currentTrack + 1) % tracks.length, true);
+    });
+
+    npProgress.addEventListener('click', (e) => {
+      if (!audio.duration) return;
+      const rect = npProgress.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    });
+
+    if (npVolume) {
+      npVolume.addEventListener('input', () => { audio.volume = npVolume.value; });
+      audio.volume = 0.8;
+    }
+
+    // Duplicate ticker cards for seamless infinite loop
+    const track = document.getElementById('ticker-track');
+    if (track) {
+      const clone = track.innerHTML;
+      track.innerHTML += clone;
+    }
+
+    // Hero bg
+    const heroBg = document.getElementById('hero-bg');
+    heroBg.style.backgroundImage = "url('./assets/extracted_image_3.webp')";
+    setTimeout(() => heroBg.classList.add('loaded'), 100);
+
+    // Nav scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Burger
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('nav-mobile');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // Intersection Observer with Staggered Fade-in
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          target.classList.add('visible');
+          
+          // Stagger children if it's a grid
+          const staggerChildren = target.querySelectorAll('.dienst-card, .studio-feature, .gear-category');
+          staggerChildren.forEach((child, index) => {
+            setTimeout(() => {
+              child.style.opacity = '1';
+              child.style.transform = 'translateY(0)';
+            }, index * 100);
+          });
+          
+          observer.unobserve(target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section, .fade-in').forEach(el => observer.observe(el));
+
+    // Contact form
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-message').classList.add('show');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
